@@ -11,6 +11,10 @@ var e = createMux()
 
 func main() {
     e.GET("/", articleIndex)
+    e.GET("/:param", func(c echo.Context) error {
+        param := c.Param("param")
+        return c.String(http.StatusOK, param)
+    })
     e.Logger.Fatal(e.Start(":8080"))
 }
 
